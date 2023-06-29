@@ -1,38 +1,443 @@
-.App {
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.screen {
+  width: 100%;
+  height: 100%;
+}
+
+.login_screen {
+  display: block;
+  position: fixed;
+  z-index: 1;
+  padding-top: auto;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: linear-gradient(to right, #3494e6, #ec6ead);
+}
+
+.login_screen_content {
+  display: block;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 320px;
+  border-radius: 5px;
+}
+
+.form {
+  padding: 30px 5px 20px 5px;
+}
+
+.form_control {
+  display: flex;
+  flex-direction: column;
+  padding: 1px 0;
+  gap: 5px;
+}
+
+.form_control label {
+  font-size: 17px;
+  color: black !important;
+}
+
+.form_control input,
+.form_control .drop_down,
+.form_control textarea,
+.drop_down {
+  background: #ffff;
+  outline: none;
+  border: 1px solid rgba(128, 128, 128, 0.377) !important;
+  font-size: 16px;
+  color: rgb(33, 33, 33);
+  padding: 8px 7px;
+  border-radius: 4px;
+  width: 100%;
+}
+
+/* .form button {
+  background: #11b1fd;
+  outline: none;
+  border: none;
+  font-size: 21px;
+  color: #ffff;
+  padding: 5px 16px;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+} */
+
+.login_container a {
+  color: rgb(0, 0, 0);
+  font-size: 17px;
+  margin-bottom: 10px;
+  text-decoration: none;
+}
+
+.navbar_top {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: auto;
+  padding: 0 60px 7px;
+  /* border-bottom: 1px solid; */
+  border-color: var(--b-light);
+  position: fixed;
+  z-index: 1000;
+  background-color: #4762ff;
+}
+
+@media screen and (max-width:768px) {
+  .navbar_top {
+    padding: 0 0;
+  }
+}
+
+.brand_name {
+  color: #fff;
+  font-size: 48px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.search_bar {
+  padding: 6px 11px;
+  outline: none;
+  border: 1px solid #80808091;
+  border-radius: 3px;
+  width: 80%;
+}
+
+.header_icon {
+  font-size: 29px;
+  color: #fff;
+  cursor: pointer;
+  padding: 0px 10px;
+}
+
+.profile_menu {
+  position: absolute;
+  background: #ffff;
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  height: auto;
+  padding: 10px 15px;
+  border: 1px solid var(--b-light);
+  border-radius: 4px;
+  z-index: 100;
+  margin-top: 8px;
+}
+
+.profile_menu a {
+  color: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 2px 5px;
+}
+
+.profile_menu a:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.home {
+  display: flex;
+  margin-top: 90px;
+  position: absolute;
+  width: 100%;
+  padding: 15px 19px;
+  height: calc(100vh - 90px) !important;
+}
+
+.friends,
+.chat {
+  display: flex;
+}
+
+.chat {
+  position: relative;
+  border: 1px solid rgba(128, 128, 128, 0.694);
+}
+
+.friendsWrapper {
+  /* border: 1px solid rgba(128, 128, 128, 0.694); */
+  padding: 12px 9px;
+  width: 100%;
+}
+
+.searchFriends {
+  padding: 6px 11px;
+  outline: none;
+  border: 1px solid #80808091;
+  border-radius: 3px;
+  width: 100%;
+  margin-bottom: 6px;
+}
+
+.conversation {
+  border-bottom: 1px solid #8080804b;
+  padding: 10px 0;
+}
+
+.conversationName {
+  font-size: 16px;
+  margin-left: 9px;
+  font-weight: 500;
+}
+
+.conversation:hover {
+  background-color: rgba(128, 128, 128, 0.116);
+  cursor: pointer;
+}
+
+.conversationImg {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.chat,
+.online {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.msg {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: flex-end; */
+}
+
+.own {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.own .msgTop {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+.own .msgBottom {
+  display: flex;
+  flex-direction: column;
+}
+
+.msgTop {
+  display: flex;
+}
+
+.own .msgText {
+  color: white;
+  background-color: #bdbdc1;
+  border-radius: 15px 0;
+  padding: 9px 17px;
+  margin: 0;
+  margin-right: 2px;
+}
+
+.own .msgTime {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 13px;
+}
+
+.msgTextIcon {
+  background-color: #a0a0a0;
+  /* padding: 5px 17px; */
+  border-radius: 51%;
+  color: #fff;
+  width: 18px;
+  height: 19px;
+  /* font-size: larger; */
+  font-weight: 600;
+  font-size: 11px;
+  padding-left: 5px;
+}
+
+.msgText {
+  background-color: #4762ff;
+  color: white;
+  border-radius: 0 15px;
+  padding: 9px 17px;
+  margin: 0;
+  font-weight: 400;
+  margin-left: 2px;
+}
+
+.msgTime {
+  display: flex;
+  flex-direction: row-reverse;
+  font-size: 13px;
+}
+
+.msgIcon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.chatMsgs {
+  overflow: overlay;
+  margin-bottom: 80px;
+}
+
+.chatTop {
+  margin-bottom: 5px;
+}
+
+.chatBottom {
+  display: flex;
+  padding: 6px 3px;
+  position: absolute;
+  gap: 8px;
+  bottom: 6px;
+  width: 96%;
+}
+
+.msgInput {
+  outline: none;
+  width: 80%;
+  padding: 6px;
+}
+
+.sendMsgBtn {
+  width: 20%;
+  outline: none;
+  border: none;
+  background: #4762ff;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 22px;
+}
+
+.onlineFriends {
+  border-bottom: 1px solid #8080804b;
+  display: flex;
+  flex-direction: row;
+}
+
+.onlineFriendsName {
+  font-size: 18px;
+  margin-left: 9px;
+  font-weight: 500;
+}
+
+.onlineFriends:hover {
+  background-color: rgba(128, 128, 128, 0.116);
+  cursor: pointer;
+}
+
+.onlineFriendsImg {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.onlineFriendsBadge {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: green;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1dc;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888888cb;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #656464fa;
+}
+
+.noMsgYet {
+  opacity: 50%;
+  justify-content: center;
+  display: flex;
+  padding: 100px 0px;
+}
+
+.profileTextIcon {
+  background-color: #a0a0a0;
+  padding: 5px 15px;
+  border-radius: 51%;
+  color: #fff;
+  font-size: larger;
+  font-weight: 600;
+}
+
+.profile {
+  /* position: relative; */
+  border: 1px solid rgba(128, 128, 128, 0.694);
+}
+
+.logOutBtn {
+  outline: none;
+  padding: 4px 6px;
+  border: none;
+  background-color: #ff0000c2;
+  color: #fff;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+.cancelBtn {
+  background: #ffffff;
+  outline: none;
+  border: 1px solid #cfcfcf;
+  font-size: 21px;
+  color: #cfcfcf;
+  padding: 5px 16px;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+  text-decoration: none;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.saveBtn {
+  background: #11b1fd;
+  outline: none;
+  border: 1px solid #cfcfcf;
+  font-size: 21px;
+  color: #cfcfcf;
+  padding: 5px 16px;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 10px;
+  text-decoration: none;
+  text-align: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.passwordIcon {
+  width: fit-content;
+  right: 10px;
+  position: absolute;
+  top: 7px;
+  cursor: pointer;
 }
